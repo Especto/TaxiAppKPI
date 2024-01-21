@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">TaxiAppKPI</string>
+
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_driver_maps">DriverMapsActivity</string>
+    <string name="title_activity_rider_maps">RiderMapsActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="driverWelcomeBtn">АВТОРИЗУВАТИСЬ ЯК ВОДІЙ</string>
+    <string name="riderWelcomeBtn">АВТОРИЗУВАТИСЬ ЯК КЛІЄНТ</string>
+    <string name="SignIn">Авторизація</string>
+    <string name="SignUp">Реєстрація</string>
+    <string name="driver">\u00A0водія</string>
+    <string name="rider">\u00A0клієнта</string>
+    <string name="car">\u00A0машини</string>
+    <string name="filterFor">Фільтр для</string>
+    <string name="filterForCar">Фільтр для авто</string>
+    <string name="emailHint">Пошта</string>
+    <string name="passHint">Пароль</string>
+    <string name="signInButton">Авторизуватись</string>
+    <string name="signUpButton">Зареєструватись</string>
+    <string name="signUpQuestion">Ще немає акаунта?</string>
+    <string name="successSignUp">Вас зареєстровано</string>
+    <string name="successSignIn">Вас авторизовано</string>
+
+    <string name="userName">Ім\'я</string>
+    <string name="userNumber">Номер телефону</string>
+    <string name="userBirthdate">Дата народження(YYYY-MM-DD)</string>
+    <string name="userGenderMale">Чоловік</string>
+    <string name="userGenderFemale">Жінка</string>
+
+
+    <string name="regCarBrand">Марка авто:</string>
+    <string name="regCarBody">Тип кузову:</string>
+    <string name="regCarModel">Модель авто:</string>
+    <string name="regCarColor">Колір авто:</string>
+    <string name="regCarNumber">Номер авто(АА0000АА)</string>
+
+
+    <string name="carEngineICE">ДВС</string>
+    <string name="carEngineE">Електрокар</string>
+    <string name="carBrand">Марка авто: %s</string>
+    <string name="carBody">Тип кузову: %s</string>
+    <string name="carModel">Модель авто: %s</string>
+    <string name="carColor">Колір авто: %s</string>
+    <string name="carNumber">Номер авто(АА0000АА):</string>
+
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="changePhoto">Змінити фото</string>
+    <string name="quitBtn">Вийти</string>
+    <string name="editCarInfoButton">Редагувати інформацію про авто</string>
+    <string name="anyway">Все рівно</string>
+    <string name="filMaxAge">Максимальний вік (до 75)</string>
+    <string name="filMinAge">Мінімальний вік (від 18)</string>
+    <string name="resetFilters">Збросити фільтр</string>
+    <string name="chsCarBodyType">Оберіть типи кузову</string>
+    <string name="waitForTrip">Очікуйте замовлення</string>
+    <string name="setPoints">Встановіть точки</string>
+    <string name="callTaxi">Почати пошук водія</string>
+    <string name="setEndPoint">Встановіть кінцеву точку</string>
+    <string name="userRating">Рейтинг %.2f</string>
+    <string name="acceptTrip">Прийняти</string>
+    <string name="cancelTrip">Відхилити</string>
+    <string name="tripPrice">Ціна замовлення: %.2f</string>
+    <string name="distanceToRider">Відстань до клієнта: %.2f км</string>
+    <string name="distanceToDriver">Відстань до водія: %.2f км</string>
+    <string name="distanceOfTrip">Довжина маршруту: %.2f км</string>
+    <string name="iAmHere">Я на місці</string>
+    <string name="pickedUpClient">Забрав клієнта</string>
+    <string name="successedTrip">Замовлення виконано</string>
+    <string name="stopTrip">Примусове завершення замовлення</string>
+    <string name="incrPrice">Збільшити ціну</string>
+    <string name="decrPrice">Зменшити ціну</string>
+    <string name="openCarInfo">Відкрити інформацію про авто</string>
+    <string name="closeCarInfo">Закрити інформацію про авто</string>
+    <string name="sendComplaint">Скарга на користувача - support@taxikpi.com</string>
+    <string name="distanceToFinish">Відстань до кінцевої точки: %.2f км</string>
+    <string name="driverLicense">Номер водійського посвідчення</string>
+
+
+</resources>

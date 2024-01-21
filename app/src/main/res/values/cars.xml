@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="acura_models">
+        <item>EL</item>
+        <item>ILX</item>
+        <item>MDX</item>
+        <item>RDX</item>
+        <item>RL</item>
+        <item>TL</item>
+        <item>TLX</item>
+        <item>TSX</item>
+        <item>інше</item>
+    </string-array>
+
+
+    <string-array name="alfaromeo_models">
+        <item>147</item>
+        <item>156</item>
+        <item>159</item>
+        <item>166</item>
+        <item>Giulia</item>
+        <item>Giulietta</item>
+        <item>Stelvio</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="audi_models">
+        <item>A1</item>
+        <item>A2</item>
+        <item>A3</item>
+        <item>A4</item>
+        <item>A5</item>
+        <item>A6</item>
+        <item>A7</item>
+        <item>A8</item>
+        <item>e-tron</item>
+        <item>Q3</item>
+        <item>Q5</item>
+        <item>Q7</item>
+        <item>Q8</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="baic_models">
+        <item>BJ</item>
+        <item>BJ</item>
+        <item>EU</item>
+        <item>EX</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="bmw_models">
+        <item>1 Series</item>
+        <item>2 Series</item>
+        <item>3 Series</item>
+        <item>4 Series</item>
+        <item>5 Series</item>
+        <item>6 Series</item>
+        <item>7 Series</item>
+        <item>8 Series</item>
+        <item>I3</item>
+        <item>I4</item>
+        <item>i5</item>
+        <item>X1</item>
+        <item>X2</item>
+        <item>X3</item>
+        <item>X4</item>
+        <item>X5</item>
+        <item>X6</item>
+        <item>X7</item>
+        <item>X8</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="brilliance_models">
+        <item>H230 / H230EV</item>
+        <item>H330</item>
+        <item>H530</item>
+        <item>BS6</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="buick_models">
+        <item>Enclave</item>
+        <item>Encore</item>
+        <item>Envision</item>
+        <item>La Crosse</item>
+        <item>Regal</item>
+        <item>Verano</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="byd_models">
+        <item>E2</item>
+        <item>E5</item>
+        <item>E6</item>
+        <item>F3</item>
+        <item>F3R</item>
+        <item>F6</item>
+        <item>G3</item>
+        <item>G6</item>
+        <item>New F3</item>
+        <item>Seal</item>
+        <item>Seagull</item>
+        <item>S3/Song</item>
+        <item>S6</item>
+        <item>Tang</item>
+        <item>Yuan</item>
+        <item>Dolphin</item>
+        <item>D1</item>
+        <item>Qin</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="cadillac_models">
+        <item>ATS</item>
+        <item>BLS</item>
+        <item>CTS</item>
+        <item>Escalade</item>
+        <item>SRX</item>
+        <item>XTS</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="changan_models">
+        <item>EADO EV300</item>
+        <item>CS55</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="cherry_models">
+        <item>Arrizo 3</item>
+        <item>Arrizo 7</item>
+        <item>Amulet</item>
+        <item>EQ5</item>
+        <item>Eastar/B11</item>
+        <item>CrossEastar</item>
+        <item>Karry</item>
+        <item>Elara</item>
+        <item>А13</item>
+        <item>M11</item>
+        <item>Tiggo</item>
+        <item>Tiggo 2</item>
+        <item>Tiggo 3</item>
+        <item>Tiggo 4</item>
+        <item>Tiggo 5</item>
+        <item>Tiggo 7</item>
+        <item>Tiggo 8</item>
+        <item>Jetour X70</item>
+        <item>QQ</item>
+
+    </string-array>
+    <string-array name="chevrolet_models">
+        <item>Aveo/Kalos</item>
+        <item>Aveo</item>
+        <item>Bolt EV</item>
+        <item>Captiva</item>
+        <item>Cobalt</item>
+        <item>Cruze</item>
+        <item>Epica</item>
+        <item>Equinox</item>
+        <item>Evanda</item>
+        <item>HHR</item>
+        <item>Lacetti</item>
+        <item>Lanos</item>
+        <item>Malibu</item>
+        <item>Menlo</item>
+        <item>Niva</item>
+        <item>Nubira</item>
+        <item>Orlando</item>
+        <item>Sonic</item>
+        <item>Spark</item>
+        <item>Trax</item>
+        <item>Tacuma/Rezzo</item>
+        <item>Tracker</item>
+        <item>Traverce</item>
+        <item>Volt</item>
+        <item>Impala</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="chrysler_models">
+        <item>200</item>
+        <item>300C</item>
+        <item>300M</item>
+        <item>Neon</item>
+        <item>Pacifica</item>
+        <item>PT Cruiser</item>
+        <item>Sebring</item>
+        <item>Town &amp; Country</item>
+        <item>Voyager</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="citroen_models">
+        <item>Berlingo</item>
+        <item>C-Elysee</item>
+        <item>C1</item>
+        <item>C3</item>
+        <item>C3 Aircross</item>
+        <item>C3 Picasso</item>
+        <item>C4</item>
+        <item>C4 Cactus</item>
+        <item>C4 Picasso</item>
+        <item>C4 Grand Picasso</item>
+        <item>C5</item>
+        <item>C5 Aircross</item>
+        <item>C6</item>
+        <item>C8</item>
+        <item>C-Crosser</item>
+        <item>DS 3 Crossback</item>
+        <item>DS4</item>
+        <item>DS5</item>
+        <item>DS7 Crossback</item>
+        <item>Jumper</item>
+        <item>Jumpy</item>
+        <item>Nemo</item>
+        <item>Space Tourer</item>
+        <item>Xsara</item>
+        <item>Xsara Picasso</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="cupra_models">
+        <item>Formentor</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="dacia_models">
+        <item>Dokker</item>
+        <item>Duster</item>
+        <item>Lodgy</item>
+        <item>Logan</item>
+        <item>Logan MCV</item>
+        <item>Sandero</item>
+        <item>Step Way</item>
+        <item>Spring</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="daewoo_models">
+        <item>Tacuma</item>
+        <item>Gentra</item>
+        <item>Kalos</item>
+        <item>Lanos/Sens</item>
+        <item>Matiz</item>
+        <item>Nexia</item>
+        <item>Nubira/Klan</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="daihatsu_models">
+        <item>Materia</item>
+        <item>Cuore</item>
+        <item>Sirion</item>
+        <item>Terios</item>
+        <item>YRV</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="diandongwu_models">
+        <item>Young mini ev</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="dodge_models">
+        <item>Avenger</item>
+        <item>Caliber</item>
+        <item>Caravan</item>
+        <item>Charger</item>
+        <item>Dart</item>
+        <item>Durango</item>
+        <item>Journey</item>
+        <item>Nitro</item>
+        <item>Ram</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="dongfeng_models">
+        <item>ES600</item>
+        <item>EX1</item>
+        <item>Junfeng</item>
+        <item>S30</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="faw_models">
+        <item>B30</item>
+        <item>Besturn B50</item>
+        <item>Bestune NAT</item>
+        <item>X40</item>
+        <item>V5</item>
+        <item>X80</item>
+    </string-array>
+
+    <string-array name="fiat_models">
+        <item>500L</item>
+        <item>500X</item>
+        <item>Albea</item>
+        <item>Bravo</item>
+        <item>Croma</item>
+        <item>Doblo</item>
+        <item>Fiorino</item>
+        <item>Freemont</item>
+        <item>Grande Punto</item>
+        <item>Idea</item>
+        <item>Panda</item>
+        <item>Punto</item>
+        <item>Linea</item>
+        <item>Qubo</item>
+        <item>Scudo</item>
+        <item>Siena</item>
+        <item>Stilo</item>
+        <item>Tipo</item>
+        <item>Talento</item>
+        <item>Ulysse</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="ford_models">
+        <item>B-Max</item>
+        <item>C-Max</item>
+        <item>EcoSport</item>
+        <item>Edge</item>
+        <item>Escape</item>
+        <item>Explorer</item>
+        <item>F 150</item>
+        <item>Fiesta</item>
+        <item>Flex</item>
+        <item>Focus</item>
+        <item>Focus Electric</item>
+        <item>Fusion EU</item>
+        <item>Fusion USA</item>
+        <item>Galaxy</item>
+        <item>Ka</item>
+        <item>Kuga</item>
+        <item>Maverick</item>
+        <item>Mondeo</item>
+        <item>Ranger</item>
+        <item>S-Max</item>
+        <item>Taurus</item>
+        <item>Transit</item>
+        <item>Tourneo Connect</item>
+        <item>Tourneo Courier</item>
+        <item>Tourneo Custom</item>
+        <item>Transit Connect</item>
+        <item>Puma</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="gac_models">
+        <item>Aion Y</item>
+        <item>AION LX</item>
+        <item>Aion S</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="geely_models">
+        <item>Atlas</item>
+        <item>Atlas Pro</item>
+        <item>CK/СК-2</item>
+        <item>Emgrand 7(FE-1,FE-2)</item>
+        <item>Emgrand</item>
+        <item>Emgrand 8</item>
+        <item>Emgrand X7</item>
+        <item>FC/MR</item>
+        <item>GC5</item>
+        <item>GC6</item>
+        <item>GC7</item>
+        <item>JL</item>
+        <item>Maple</item>
+        <item>MK</item>
+        <item>MK Cross</item>
+        <item>MK-2</item>
+        <item>Radar</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="gmc_models">
+        <item>Acadia</item>
+        <item>Jimmy</item>
+        <item>Savana</item>
+        <item>Terrain</item>
+        <item>Yukon</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="greatwall_models">
+        <item>C30</item>
+        <item>Haval H2</item>
+        <item>Haval H3</item>
+        <item>Haval H5</item>
+        <item>Haval H6</item>
+        <item>Haval M2</item>
+        <item>Haval M4</item>
+        <item>Hover</item>
+        <item>Pegasus</item>
+        <item>Safe</item>
+        <item>Voleex</item>
+        <item>Wingle</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="haval_models">
+        <item>H2</item>
+        <item>H9</item>
+        <item>Jolion</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="honda_models">
+        <item>Accord</item>
+        <item>Civic</item>
+        <item>Clarity</item>
+        <item>CR-V</item>
+        <item>Crosstour</item>
+        <item>Elysion</item>
+        <item>eNS1</item>
+        <item>eNP1</item>
+        <item>FIT/Jazz</item>
+        <item>FR-V</item>
+        <item>HR-V</item>
+        <item>Insight</item>
+        <item>Legend</item>
+        <item>M-NV</item>
+        <item>Odyssey</item>
+        <item>Passport</item>
+        <item>Pilot</item>
+        <item>Stepwgn</item>
+        <item>Stream</item>
+        <item>VE-1</item>
+        <item>X-NV</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="hyundai_models">
+        <item>Accent</item>
+        <item>Avante (Elantra)</item>
+        <item>Azera (Grandeur)</item>
+        <item>Creta</item>
+        <item>Elantra</item>
+        <item>Equus</item>
+        <item>Genesis</item>
+        <item>Getz</item>
+        <item>Grand Santa Fe</item>
+        <item>Grand Starex</item>
+        <item>Grandeur</item>
+        <item>H1</item>
+        <item>i10</item>
+        <item>i20</item>
+        <item>i30</item>
+        <item>i40</item>
+        <item>Ioniq</item>
+        <item>IX35</item>
+        <item>IX55</item>
+        <item>Kona / Encino</item>
+        <item>Lafesta</item>
+        <item>Matrix</item>
+        <item>Palisade</item>
+        <item>Santa FE</item>
+        <item>Solaris</item>
+        <item>Sonata</item>
+        <item>Staria</item>
+        <item>Terracan</item>
+        <item>Trajet</item>
+        <item>Tucson</item>
+        <item>Veloster</item>
+        <item>Venue</item>
+        <item>Veracruz</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="infiniti_models">
+        <item>EX 25/35/37</item>
+        <item>FX 30/37/50</item>
+        <item>G 25/35/37</item>
+        <item>M</item>
+        <item>Q30</item>
+        <item>Q50</item>
+        <item>Q70</item>
+        <item>QX30</item>
+        <item>QX50</item>
+        <item>QX55</item>
+        <item>QX60</item>
+        <item>QX70</item>
+        <item>QX80</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="jac_models">
+        <item>iEV7L</item>
+        <item>iEV7S</item>
+        <item>iEVS4</item>
+        <item>J3</item>
+        <item>J4</item>
+        <item>J5</item>
+        <item>J6</item>
+        <item>J7</item>
+        <item>Refine S2</item>
+        <item>S2</item>
+        <item>S3</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="jaguar_models">
+        <item>E-Pace</item>
+        <item>F-Pace</item>
+        <item>I-Pase</item>
+        <item>S-Type</item>
+        <item>X-Type</item>
+        <item>XE</item>
+        <item>XF</item>
+        <item>XJ</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="jeep_models">
+        <item>Cherokee</item>
+        <item>Compass</item>
+        <item>Grand Cherokee</item>
+        <item>Patriot</item>
+        <item>Renegade</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="kia_models">
+        <item>Joice</item>
+        <item>Cadenza/K7</item>
+        <item>Carens</item>
+        <item>Carnival</item>
+        <item>Ceed</item>
+        <item>XCeed</item>
+        <item>Cerato/K3/Forte</item>
+        <item>Magentis</item>
+        <item>Mohave</item>
+        <item>Niro</item>
+        <item>Opirus</item>
+        <item>Optima/K5</item>
+        <item>Picanto/Morning</item>
+        <item>Rio/K2</item>
+        <item>Sedona</item>
+        <item>Sephia</item>
+        <item>Seltos</item>
+        <item>Sorento</item>
+        <item>Soul</item>
+        <item>Soul EV</item>
+        <item>Sportage</item>
+        <item>Stonic</item>
+        <item>Stinger</item>
+        <item>Venga</item>
+        <item>Pride</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="lancia_models">
+        <item>Delta</item>
+        <item>Phedra</item>
+        <item>Thesis</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="landrover_models">
+        <item>Defender</item>
+        <item>Discovery</item>
+        <item>Discovery Sport</item>
+        <item>Evoque</item>
+        <item>Freelander</item>
+        <item>Range Rover</item>
+        <item>Velar</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="lexus_models">
+        <item>CT</item>
+        <item>ES</item>
+        <item>GS</item>
+        <item>GX</item>
+        <item>IS</item>
+        <item>LS</item>
+        <item>LX</item>
+        <item>NX</item>
+        <item>RX</item>
+        <item>UX</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="lifan_models">
+        <item>520</item>
+        <item>630</item>
+        <item>X50</item>
+        <item>X60</item>
+        <item>X70</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="lincoln_models">
+        <item>Continental</item>
+        <item>MKC</item>
+        <item>MKS</item>
+        <item>MKX</item>
+        <item>MKZ / Zephyr</item>
+        <item>MKZ</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="maserati_models">
+        <item>Quattroporte</item>
+        <item>Ghibli</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="maxus_models">
+        <item>EV30</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="mazda_models">
+        <item>2</item>
+        <item>3</item>
+        <item>323</item>
+        <item>5</item>
+        <item>6</item>
+        <item>626</item>
+        <item>CX-3</item>
+        <item>CX-5</item>
+        <item>CX-7</item>
+        <item>CX-9</item>
+        <item>CX-30</item>
+        <item>CX-60</item>
+        <item>Premacy</item>
+        <item>MPV</item>
+        <item>Tribute</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="mercedesbenz_models">
+        <item>A-Class</item>
+        <item>B-Class</item>
+        <item>C-Class</item>
+        <item>Citan</item>
+        <item>CLA</item>
+        <item>CLS</item>
+        <item>E-Class</item>
+        <item>G</item>
+        <item>GL</item>
+        <item>GLA</item>
+        <item>GLC</item>
+        <item>GLE</item>
+        <item>GLE Coupe</item>
+        <item>GLS</item>
+        <item>ML</item>
+        <item>R</item>
+        <item>S-Class</item>
+        <item>Vaneo</item>
+        <item>Viano</item>
+        <item>Vito</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="mg_models">
+        <item>350</item>
+        <item>550</item>
+        <item>3 Cross</item>
+        <item>4 EV</item>
+        <item>HS</item>
+        <item>Marvel R</item>
+        <item>ZS</item>
+        <item>ZS EV</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="mini_models">
+        <item>Cooper</item>
+        <item>Cooper Clubman</item>
+        <item>Countryman</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="mitsubishi_models">
+        <item>Airtrek</item>
+        <item>ASX</item>
+        <item>Carisma</item>
+        <item>Colt</item>
+        <item>Eclipse Cross</item>
+        <item>Galant</item>
+        <item>Grandis</item>
+        <item>I MiEV</item>
+        <item>L200</item>
+        <item>Lancer</item>
+        <item>Mirage</item>
+        <item>Outlander</item>
+        <item>Pajero</item>
+        <item>Pajero Sport</item>
+        <item>RVR</item>
+        <item>Space Star</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="mustang_models">
+        <item>Yema</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="neta_models">
+        <item>V</item>
+        <item>U</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="nissan_models">
+        <item>Almera Classic</item>
+        <item>Almera</item>
+        <item>Altima</item>
+        <item>Armada</item>
+        <item>Ariya</item>
+        <item>Cube</item>
+        <item>Cefiro</item>
+        <item>Juke</item>
+        <item>Kubistar</item>
+        <item>Kicks</item>
+        <item>Leaf</item>
+        <item>Maxima</item>
+        <item>Micra</item>
+        <item>Murano</item>
+        <item>Navara</item>
+        <item>Note</item>
+        <item>NV200</item>
+        <item>Pathfinder</item>
+        <item>Patrol</item>
+        <item>Pixo</item>
+        <item>Primastar</item>
+        <item>Primera</item>
+        <item>Qashqai</item>
+        <item>Quest</item>
+        <item>Rogue</item>
+        <item>Sentra</item>
+        <item>Sunny</item>
+        <item>Sylphy</item>
+        <item>Teana</item>
+        <item>Tiida/Latio</item>
+        <item>Versa</item>
+        <item>X-Trail</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="opel_models">
+        <item>Сombo</item>
+        <item>Antara</item>
+        <item>Astra</item>
+        <item>Ampera</item>
+        <item>Ampera-e</item>
+        <item>Combo</item>
+        <item>Corsa</item>
+        <item>Crossland</item>
+        <item>Grandland X</item>
+        <item>Insignia</item>
+        <item>Meriva</item>
+        <item>Mokka</item>
+        <item>Movano</item>
+        <item>Omega</item>
+        <item>Signum</item>
+        <item>Vectra</item>
+        <item>Vivaro</item>
+        <item>Zafira</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="peugeout_models">
+        <item>206</item>
+        <item>207</item>
+        <item>208</item>
+        <item>301</item>
+        <item>307</item>
+        <item>308</item>
+        <item>406</item>
+        <item>407</item>
+        <item>408</item>
+        <item>508</item>
+        <item>607</item>
+        <item>807</item>
+        <item>2008</item>
+        <item>3008</item>
+        <item>4007</item>
+        <item>4008</item>
+        <item>5008</item>
+        <item>207SW</item>
+        <item>Bipper</item>
+        <item>Expert</item>
+        <item>Partner</item>
+        <item>Rifter</item>
+        <item>Traveller</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="pontiac_models">
+        <item>Vibe</item>
+        <item>інше</item>
+
+    </string-array>
+
+    <string-array name="porsche_models">
+        <item>Cayenne</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="ravon_models">
+        <item>R2</item>
+        <item>Nexia R3</item>
+        <item>R4</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="renault_models">
+        <item>Arkana</item>
+        <item>Captur</item>
+        <item>Clio</item>
+        <item>City</item>
+        <item>Espace</item>
+        <item>Express</item>
+        <item>Fluence</item>
+        <item>Kadjar</item>
+        <item>Kangoo</item>
+        <item>Koleos</item>
+        <item>Laguna</item>
+        <item>Latitude</item>
+        <item>Megane</item>
+        <item>Modus</item>
+        <item>Scenic</item>
+        <item>Scenic Conquest</item>
+        <item>Scenic RX</item>
+        <item>StepWay</item>
+        <item>Symbol | Clio Symbol</item>
+        <item>Symbol | Thalia</item>
+        <item>Symbol</item>
+        <item>Talisman</item>
+        <item>Trafic</item>
+        <item>Vel Satis</item>
+        <item>Zoe</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="rover_models">
+        <item>45</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="saab_models">
+        <item>9-3</item>
+        <item>9-5</item>
+        <item>9-7</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="samand_models">
+        <item>SE</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="samsung_models">
+        <item>QM 3</item>
+        <item>QM 5</item>
+        <item>QM 6</item>
+        <item>SM3</item>
+        <item>SM5</item>
+        <item>SM6</item>
+        <item>SM7</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="seat_models">
+        <item>Alhambra</item>
+        <item>Altea</item>
+        <item>Arona</item>
+        <item>Ateca</item>
+        <item>Cordoba</item>
+        <item>Exeo</item>
+        <item>Ibiza</item>
+        <item>Leon</item>
+        <item>Tarraco</item>
+        <item>Toledo</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="skoda_models">
+        <item>Citigo</item>
+        <item>Enyaq</item>
+        <item>Fabia</item>
+        <item>Kamiq</item>
+        <item>Karoq</item>
+        <item>Kodiaq</item>
+        <item>Octavia</item>
+        <item>Octavia A5</item>
+        <item>Octavia A7</item>
+        <item>Octavia A8</item>
+        <item>Octavia Scout</item>
+        <item>Octavia Tour</item>
+        <item>Praktik</item>
+        <item>Rapid/Spaceback</item>
+        <item>Roomster</item>
+        <item>Scala</item>
+        <item>SuperВ Combi</item>
+        <item>SuperB</item>
+        <item>Yeti</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="ssangyoung_models">
+        <item>Actyon</item>
+        <item>Actyon Sports</item>
+        <item>Korando</item>
+        <item>Kyron</item>
+        <item>Nomad</item>
+        <item>Rexton</item>
+        <item>Rodius</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="subaru_models">
+        <item>Crosstrek XV</item>
+        <item>Forester</item>
+        <item>Impreza</item>
+        <item>Justy</item>
+        <item>Legacy</item>
+        <item>Outback</item>
+        <item>Trezia</item>
+        <item>Tribeca</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="suzuki_models">
+        <item>Baleno</item>
+        <item>Ignis</item>
+        <item>Grand Vitara</item>
+        <item>Kizashi</item>
+        <item>Liana</item>
+        <item>Splash</item>
+        <item>Swift</item>
+        <item>SX4</item>
+        <item>S-cross</item>
+        <item>Vitara</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="tesla_models">
+        <item>Model</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="toyota_models">
+        <item>4Runner</item>
+        <item>Alphard</item>
+        <item>Aurion</item>
+        <item>Auris</item>
+        <item>Avalon</item>
+        <item>Avensis</item>
+        <item>Avensis Verso</item>
+        <item>Aqua</item>
+        <item>Aygo</item>
+        <item>bZ4X</item>
+        <item>Estima</item>
+        <item>C-HR / Izoa</item>
+        <item>Camry</item>
+        <item>Corolla</item>
+        <item>Corolla Verso</item>
+        <item>Corolla Сross</item>
+        <item>FJ Cruiser</item>
+        <item>Fortuner</item>
+        <item>Hiace</item>
+        <item>Highlander</item>
+        <item>Hilux</item>
+        <item>Innova</item>
+        <item>Land Cruiser</item>
+        <item>Land Cruiser Prado</item>
+        <item>Previa</item>
+        <item>Prius</item>
+        <item>ProAce</item>
+        <item>Rav 4</item>
+        <item>Rav 4 EV</item>
+        <item>Scion xB</item>
+        <item>Scion xD</item>
+        <item>Sequoia</item>
+        <item>Sienna</item>
+        <item>Urban Cruiser</item>
+        <item>Venza</item>
+        <item>Verso</item>
+        <item>Voxy</item>
+        <item>Yaris</item>
+        <item>Yaris Cross</item>
+        <item>Yaris Verso</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="volkswagen_models">
+        <item>Amarok</item>
+        <item>Arteon</item>
+        <item>Bora</item>
+        <item>Caddy</item>
+        <item>Crafter</item>
+        <item>e-Bora</item>
+        <item>e-Golf</item>
+        <item>E-Tharu</item>
+        <item>E-UP</item>
+        <item>Golf</item>
+        <item>Golf Plus</item>
+        <item>ID</item>
+        <item>Jetta</item>
+        <item>lavida</item>
+        <item>Multivane</item>
+        <item>Passat</item>
+        <item>Passat Alltrack</item>
+        <item>Phaeton</item>
+        <item>Polo</item>
+        <item>Polo sedan</item>
+        <item>Sharan</item>
+        <item>T-Roc</item>
+        <item>Tiguan</item>
+        <item>Tiguan Allspace</item>
+        <item>Touran</item>
+        <item>Touareg</item>
+        <item>Transporter</item>
+        <item>Up</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="volvo_models">
+        <item>С40</item>
+        <item>S40</item>
+        <item>S60</item>
+        <item>S80</item>
+        <item>S90</item>
+        <item>V40</item>
+        <item>V50</item>
+        <item>V60</item>
+        <item>V70</item>
+        <item>V90</item>
+        <item>XC40</item>
+        <item>XC60</item>
+        <item>XC70</item>
+        <item>XC90</item>
+        <item>інше</item>
+    </string-array>
+
+    <string-array name="заз_models">
+        <item>Vida</item>
+        <item>Forza</item>
+        <item>інше</item>
+    </string-array>
+    <string-array name="інше_models">
+        <item>Інше</item>
+    </string-array>
+
+</resources>

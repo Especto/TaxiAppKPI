@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_screen"
+    tools:context=".login.WelcomeActivity">
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/driverButton"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/driverWelcomeBtn"
+            android:drawableStart="@drawable/baseline_directions_car_24"/>
+
+        <Button
+            android:id="@+id/riderButton"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/riderWelcomeBtn"
+            android:drawableStart="@drawable/baseline_man_24"
+            />
+
+    </LinearLayout>
+
+
+
+
+    <!--Button
+        android:id="@+id/driverBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/driverBtn"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        android:padding="20dp"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/riderBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/driverBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/customerBtn"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        android:padding="60dp"
+        android:textAllCaps="false"/-->
+</RelativeLayout>

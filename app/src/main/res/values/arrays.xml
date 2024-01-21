@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="car_body">
+        <item>Седан/кросовер/(інший кузов с 4 дверима)</item>
+        <item>Купе/Пікап/(інший кузов с 2 дверима)</item>
+        <item>Універсал</item>
+        <item>Мінівен</item>
+        <item>Кабріолет/Родстер/(інший кузов з відкритим верхом)</item>
+        <item>Мотоцикл(та його підвиди)</item>
+    </string-array>
+
+    <string-array name="car_color">
+        <item>чорний</item>
+        <item>синій</item>
+        <item>зелений</item>
+        <item>бежевий</item>
+        <item>червоний</item>
+        <item>фіолетовий</item>
+        <item>оранжевий</item>
+        <item>жовтий</item>
+        <item>білий</item>
+        <item>коричневий</item>
+        <item>сірий</item>
+    </string-array>
+
+    <string-array name="car_brand">
+        <item>Acura</item>
+        <item>Alfa Romeo</item>
+        <item>Audi</item>
+        <item>BAIC</item>
+        <item>BMW</item>
+        <item>Brilliance</item>
+        <item>Buick</item>
+        <item>BYD</item>
+        <item>Cadillac</item>
+        <item>Changan</item>
+        <item>Chery</item>
+        <item>Chevrolet</item>
+        <item>Chrysler</item>
+        <item>Citroen</item>
+        <item>Cupra</item>
+        <item>Dacia</item>
+        <item>Daewoo</item>
+        <item>Daihatsu</item>
+        <item>Diandongwu</item>
+        <item>Dodge</item>
+        <item>DongFeng</item>
+        <item>FAW</item>
+        <item>Fiat</item>
+        <item>Ford</item>
+        <item>Gac</item>
+        <item>Geely</item>
+        <item>GMC</item>
+        <item>Great Wall</item>
+        <item>Haval</item>
+        <item>Honda</item>
+        <item>Hyundai</item>
+        <item>Infiniti</item>
+        <item>JAC</item>
+        <item>Jaguar</item>
+        <item>Jeep</item>
+        <item>Kia</item>
+        <item>Lancia</item>
+        <item>Land Rover</item>
+        <item>Lexus</item>
+        <item>Lifan</item>
+        <item>Lincoln</item>
+        <item>Maserati</item>
+        <item>Maxus</item>
+        <item>Mazda</item>
+        <item>Mercedes-Benz</item>
+        <item>MG</item>
+        <item>MINI</item>
+        <item>Mitsubishi</item>
+        <item>Mustang</item>
+        <item>NETA</item>
+        <item>Nissan</item>
+        <item>Opel</item>
+        <item>Peugeot</item>
+        <item>Pontiac</item>
+        <item>Porsche</item>
+        <item>Ravon</item>
+        <item>Renault</item>
+        <item>Rover</item>
+        <item>Saab</item>
+        <item>Samand</item>
+        <item>Samsung</item>
+        <item>Seat</item>
+        <item>Skoda</item>
+        <item>Ssang Yong</item>
+        <item>Subaru</item>
+        <item>Suzuki</item>
+        <item>Tesla</item>
+        <item>Toyota</item>
+        <item>Volkswagen</item>
+        <item>Volvo</item>
+        <item>ЗАЗ</item>
+        <item>Інше</item>
+    </string-array>
+
+</resources>
