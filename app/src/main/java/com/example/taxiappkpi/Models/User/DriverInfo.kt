@@ -10,7 +10,7 @@ data class DriverInfo(
         val userInfoMap = userInfo.toMap().toMutableMap()
         userInfoMap["driverLicense"] = driverLicense
         return mapOf(
-            "userInfo" to userInfoMap.toMap(),
+            "userInfo" to userInfoMap,
             "carInfo" to carInfo.toMap()
         )
     }

@@ -14,15 +14,12 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.net.toUri
-import com.example.taxiappkpi.Common
+import com.example.taxiappkpi.References
 import com.example.taxiappkpi.Models.User.Birthdate
 import com.example.taxiappkpi.Models.User.DriverInfo
 import com.example.taxiappkpi.Models.User.RiderInfo
-import com.example.taxiappkpi.Models.User.toBirthdate
-import com.example.taxiappkpi.Models.User.toCarInfo
 import com.example.taxiappkpi.Models.User.toDriverInfo
 import com.example.taxiappkpi.Models.User.toRiderInfo
-import com.example.taxiappkpi.Models.User.toUserInfo
 
 import com.example.taxiappkpi.R
 import com.google.firebase.auth.FirebaseAuth
@@ -111,7 +108,7 @@ class SettingsUserActivity : AppCompatActivity() {
 
         if (role == "driver") {
             val driverID = mAuth.currentUser!!.uid
-            FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_REFERENCE).child(driverID).addListenerForSingleValueEvent(object :
+            FirebaseDatabase.getInstance().reference.child(References.DRIVERS_REFERENCE).child(driverID).addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
@@ -146,7 +143,7 @@ class SettingsUserActivity : AppCompatActivity() {
             })
         } else {
             val riderID = mAuth.currentUser!!.uid
-            FirebaseDatabase.getInstance().reference.child(Common.RIDERS_REFERENCE).child(riderID).addListenerForSingleValueEvent(object :
+            FirebaseDatabase.getInstance().reference.child(References.RIDERS_REFERENCE).child(riderID).addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
@@ -202,11 +199,13 @@ class SettingsUserActivity : AppCompatActivity() {
             driverInfo.userInfo.firstName = firstName
             driverInfo.userInfo.phoneNumber = phoneNumber
             driverInfo.userInfo.birthdate = birthdate
-            driverInfo.userInfo.avatar = imgUri.toString()
             driverInfo.driverLicense = driverLicense
+            if (imgUri.toString() != ""){
+                driverInfo.userInfo.avatar = imgUri.toString()
+            }
 
             val driverID = mAuth.currentUser!!.uid
-            FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_REFERENCE).child(driverID).updateChildren(driverInfo.toMap()).addOnSuccessListener {
+            FirebaseDatabase.getInstance().reference.child(References.DRIVERS_REFERENCE).child(driverID).updateChildren(driverInfo.toMap()).addOnSuccessListener {
                 Toast.makeText(this@SettingsUserActivity, "Дані оновились", Toast.LENGTH_SHORT).show()
                 closeActivity(false)
             }
@@ -214,10 +213,13 @@ class SettingsUserActivity : AppCompatActivity() {
             riderInfo.userInfo.firstName=firstName
             riderInfo.userInfo.phoneNumber = phoneNumber
             riderInfo.userInfo.birthdate = birthdate
-            riderInfo.userInfo.avatar = imgUri.toString()
+            if (imgUri.toString() != ""){
+                riderInfo.userInfo.avatar = imgUri.toString()
+            }
+
 
             val riderID = mAuth.currentUser!!.uid
-            FirebaseDatabase.getInstance().reference.child(Common.RIDERS_REFERENCE).child(riderID).updateChildren(riderInfo.toMap()).addOnSuccessListener {
+            FirebaseDatabase.getInstance().reference.child(References.RIDERS_REFERENCE).child(riderID).updateChildren(riderInfo.toMap()).addOnSuccessListener {
                 Toast.makeText(this@SettingsUserActivity, "Дані оновились", Toast.LENGTH_SHORT).show()
                 closeActivity(false)
             }

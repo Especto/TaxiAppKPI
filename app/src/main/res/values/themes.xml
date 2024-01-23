@@ -2,5 +2,7 @@
 <resources>
     <style name="Theme.TaxiAppKPI" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorButtonNormal">@color/gray</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:windowBackground">@color/black</item>
     </style>
 </resources>

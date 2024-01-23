@@ -102,7 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize = "18sp"
-                    android:hint="@string/carBrand" />
+                    android:hint="@string/edtCarBrand" />
 
                 <Spinner
                     android:id="@+id/edtCarBrandSpinner"
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:padding="11dp"
                     android:entries="@array/car_brand"
-                    android:hint="@string/carBody"
+                    android:hint="@string/edtCarBody"
                     android:layout_alignParentEnd="true"/>
             </RelativeLayout>
 
@@ -124,14 +124,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize= "18sp"
-                    android:hint="@string/carModel" />
+                    android:hint="@string/edtCarModel" />
 
                 <Spinner
                     android:id="@+id/edtCarModelSpinner"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:padding="11dp"
-                    android:hint="@string/carModel"
+                    android:hint="@string/edtCarModel"
                     android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
@@ -146,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize= "18sp"
-                    android:hint="@string/carBody" />
+                    android:hint="@string/edtCarBody" />
 
                 <Spinner
                     android:id="@+id/edtCarBodySpinner"
@@ -154,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:padding="11dp"
                     android:entries="@array/car_body"
-                    android:hint="@string/carBody"
+                    android:hint="@string/edtCarBody"
                     android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
@@ -170,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize= "18sp"
-                    android:hint="@string/carColor"/>
+                    android:hint="@string/edtCarColor"/>
 
                 <Spinner
                     android:id="@+id/edtCarColorSpinner"
@@ -178,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:padding="11dp"
                     android:entries="@array/car_color"
-                    android:hint="@string/carColor"
+                    android:hint="@string/edtCarColor"
                     android:layout_alignParentEnd="true"/>
             </RelativeLayout>
 
@@ -187,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
-                android:hint="@string/carNumber"
+                android:hint="@string/edtCarNumber"
                 android:inputType="textCapWords"
                 />
 

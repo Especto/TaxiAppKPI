@@ -139,7 +139,6 @@ class FiltersForDriverActivity : AppCompatActivity() {
             init()
         }
 
-
     }
 
     private fun closeActivity(code: Boolean) {

@@ -1,6 +1,6 @@
 package com.example.taxiappkpi.Models.User
 
-import com.example.taxiappkpi.Models.Trip.TripRequest
+import android.util.Log
 
 fun Map<*, *>.toUserInfo(): UserInfo {
     return UserInfo(
@@ -8,7 +8,7 @@ fun Map<*, *>.toUserInfo(): UserInfo {
         phoneNumber = this["phoneNumber"].toString(),
         gender = (this["gender"] as? Long)?.toInt() ?: 0,
         avatar = this["avatar"].toString(),
-        rating = (this["rating"] as? Long)?.toDouble() ?: 0.0,
+        rating = (this["rating"] as? Long)?.toDouble() ?: (this["rating"] as Double),
         birthdate = (this["birthdate"] as? Map<String, Any>)?.toBirthdate() ?: Birthdate(),
         numTrips = (this["numTrips"] as? Long)?.toInt() ?: 0
     )
@@ -46,16 +46,8 @@ fun Map<*, *>.toDriverInfo(): DriverInfo {
 }
 
 fun Map<*, *>.toRiderInfo(): RiderInfo {
+    Log.d("log_check", "${this["userInfo"]}")
     return RiderInfo(
         userInfo = this["userInfo"]?.let { (it as Map<String, Any>).toUserInfo() } ?: UserInfo()
-    )
-}
-
-fun Map<*, *>.toTripRequest(): TripRequest {
-    return TripRequest(
-        start = (this["start"] as? List<*>)?.mapNotNull { it as? Double } ?: listOf(),
-        finish = (this["finish"] as? List<*>)?.mapNotNull { it as? Double } ?: listOf(),
-        price = this["price"] as? Double ?: 0.0,
-        status = this["status"] as? Int ?: -1
     )
 }

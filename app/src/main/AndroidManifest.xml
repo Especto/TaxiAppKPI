@@ -33,11 +33,9 @@
         <activity
             android:name=".registration.RegistrationActivity"
             android:exported="false" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDxU2uxZfjqBM467wBwNRwuKP0WGCpuIwg" /> <!--AIzaSyBUU0jASqk5BDGGG_b32pp6YUp1NUDu_zk-->
-
+            android:value="@string/google_maps_api_key"/> <!--AIzaSyBUU0jASqk5BDGGG_b32pp6YUp1NUDu_zk-->
         <activity
             android:name=".maps.RiderMapsActivity"
             android:exported="false"
@@ -53,12 +51,11 @@
             android:name=".login.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".login.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.TaxiAppKPI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

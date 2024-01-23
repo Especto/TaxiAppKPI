@@ -1,12 +1,12 @@
-package com.example.taxiappkpi
+package com.example.taxiappkpi.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import com.example.taxiappkpi.login.WelcomeActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.example.taxiappkpi.R
 
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

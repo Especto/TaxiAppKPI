@@ -9,6 +9,16 @@
         <item>Мотоцикл(та його підвиди)</item>
     </string-array>
 
+    <string-array name="car_body_filter">
+        <item>Без різниці</item>
+        <item>Седан/кросовер/(інший кузов с 4 дверима)</item>
+        <item>Купе/Пікап/(інший кузов с 2 дверима)</item>
+        <item>Універсал</item>
+        <item>Мінівен</item>
+        <item>Кабріолет/Родстер/(інший кузов з відкритим верхом)</item>
+        <item>Мотоцикл(та його підвиди)</item>
+    </string-array>
+
     <string-array name="car_color">
         <item>чорний</item>
         <item>синій</item>

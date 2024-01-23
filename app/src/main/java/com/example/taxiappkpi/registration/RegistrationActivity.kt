@@ -1,8 +1,11 @@
 package com.example.taxiappkpi.registration
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,7 +19,9 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.Toast
-import com.example.taxiappkpi.Common
+import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import com.example.taxiappkpi.References
 import com.example.taxiappkpi.Models.User.Birthdate
 import com.example.taxiappkpi.Models.User.CarInfo
 import com.example.taxiappkpi.Models.User.DriverInfo
@@ -30,9 +35,13 @@ import com.example.taxiappkpi.maps.RiderMapsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import java.time.LocalDate
+import java.time.Period
+import java.util.Calendar
 import java.util.Locale
 
 class RegistrationActivity : AppCompatActivity() {
+    private val LOCATION_PERMISSION_REQUEST_CODE = 1
     private lateinit var mAuth: FirebaseAuth
     private val PICK_IMAGE_REQUEST = 1
     private lateinit var imgCar: ImageView
@@ -40,13 +49,39 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var carBrandSP: Spinner
     private lateinit var carModelSP: Spinner
     private lateinit var role: String
+    private lateinit var driverLicense: EditText
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
         mAuth = FirebaseAuth.getInstance()
         role = intent.getStringExtra("ROLE")!!
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+        }
 
         init()
 
@@ -57,6 +92,8 @@ class RegistrationActivity : AppCompatActivity() {
             carBrandSP = findViewById(R.id.regCarBrandSpinner)
             carModelSP = findViewById(R.id.regCarModelSpinner)
             imgCar = findViewById(R.id.regCarPhoto)
+            driverLicense = findViewById(R.id.regDriverLicense)
+            driverLicense.visibility = View.VISIBLE
 
             carBrandSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
@@ -106,10 +143,10 @@ class RegistrationActivity : AppCompatActivity() {
                 val carBody = findViewById<Spinner>(R.id.regCarBodySpinner).selectedItem.toString()
                 val carColor = findViewById<Spinner>(R.id.regCarColorSpinner).selectedItem.toString()
                 val carNumber = findViewById<EditText>(R.id.regCarNumber).text.toString()
+                val driverLicenseText = driverLicense.text.toString()
 
-                val driverLicense = findViewById<EditText>(R.id.regDriverLicense).text.toString()
 
-                if(carBrandSelected.isEmpty() || carModelSelected.isEmpty() || carColor.isEmpty() || carNumber.isEmpty() || driverLicense.isEmpty()){
+                if(carBrandSelected.isEmpty() || carModelSelected.isEmpty() || carColor.isEmpty() || carNumber.isEmpty() || driverLicenseText.isEmpty()){
                     Toast.makeText(this@RegistrationActivity, "Заповніть усі поля", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
@@ -119,7 +156,17 @@ class RegistrationActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
-                registerDriver(firstName, phoneNumber, birthdate, gender, carEngType, carBrandSelected, carModelSelected, carBody, carColor, carNumber, driverLicense)
+                val birthday = Calendar.getInstance()
+                birthday.set(birthdate.year, birthdate.month, birthdate.day)
+                val age = Calendar.getInstance().get(Calendar.YEAR) - birthday.get(Calendar.YEAR)
+
+                if (age < 20) {
+                    Toast.makeText(this@RegistrationActivity, "Водію повинно бути більше 20 років", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+
+                registerDriver(firstName, phoneNumber, birthdate, gender, carEngType, carBrandSelected, carModelSelected, carBody, carColor, carNumber, driverLicenseText)
             } else {
                 registerRider(firstName, phoneNumber, birthdate, gender)
             }
@@ -154,11 +201,9 @@ class RegistrationActivity : AppCompatActivity() {
             photo = imgCarUri
         )
 
-
-
         val driverInfo = DriverInfo(userInfo, carInfo, driverLicense)
         val driverID = mAuth.currentUser!!.uid
-        FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_REFERENCE).child(driverID).updateChildren(driverInfo.toMap()).addOnSuccessListener {
+        FirebaseDatabase.getInstance().reference.child(References.DRIVERS_REFERENCE).child(driverID).updateChildren(driverInfo.toMap()).addOnSuccessListener {
             Toast.makeText(this@RegistrationActivity, "Реєстрація закінчена", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this@RegistrationActivity, DriverMapsActivity::class.java))
         }
@@ -167,8 +212,6 @@ class RegistrationActivity : AppCompatActivity() {
 
 
     private fun registerRider(firstName: String, phoneNumber: String, birthdate: Birthdate, gender: String) {
-
-
         val genderInt = genderStringToInt(gender)
 
         val userInfo = UserInfo(
@@ -180,7 +223,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         val riderInfo = RiderInfo(userInfo)
         val riderID = mAuth.currentUser!!.uid
-        FirebaseDatabase.getInstance().reference.child(Common.RIDERS_REFERENCE).child(riderID).updateChildren(riderInfo.toMap()).addOnSuccessListener {
+        FirebaseDatabase.getInstance().reference.child(References.RIDERS_REFERENCE).child(riderID).updateChildren(riderInfo.toMap()).addOnSuccessListener {
             Toast.makeText(this@RegistrationActivity, "Реєстрація закінчена", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this@RegistrationActivity, RiderMapsActivity::class.java))
         }

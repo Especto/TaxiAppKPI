@@ -1,7 +1,5 @@
 package com.example.taxiappkpi.Models.User
 
-import java.io.Serializable
-
 data class Birthdate(
     var year: Int = 0,
     var month: Int = 0,

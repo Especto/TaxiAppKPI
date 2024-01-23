@@ -118,7 +118,14 @@ class FiltersForRiderActivity : AppCompatActivity() {
             else -> -1
         }
         val carBody = carBodyType.selectedItem.toString()
-        val carBodyIndex = resources.getStringArray(R.array.car_body).indexOf(carBody)
+        Log.d("log_check", "filters_carbody = $carBody")
+        var carBodyIndex = resources.getStringArray(R.array.car_body_filter).indexOf(carBody)
+        Log.d("log_check", "filters_carbodyIndex = $carBodyIndex")
+        if(carBodyIndex == 0 || carBodyIndex == -1) {
+            carBodyIndex = -1 }
+        else{
+            carBodyIndex -= 1
+        }
 
         driverFilter = DriverFilter(UserFilter(gender, minAge, maxAge), CarFilter(engType, carBodyIndex))
 
@@ -171,8 +178,8 @@ class FiltersForRiderActivity : AppCompatActivity() {
             }
         }
 
-        if(carFilterInfo.bodyType != -1){
-            initializeBodySpinner(carFilterInfo.bodyType)
+        if(carFilterInfo.bodyType != 0){
+            initializeBodySpinner(carFilterInfo.bodyType + 1)
         }
         else{
             initializeBodySpinner(0)
@@ -205,7 +212,7 @@ class FiltersForRiderActivity : AppCompatActivity() {
     }
 
     private fun initializeBodySpinner(selectedBody: Int) {
-        val bodyTypesArray = resources.getStringArray(R.array.car_body)
+        val bodyTypesArray = resources.getStringArray(R.array.car_body_filter)
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, bodyTypesArray)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         carBodyType.adapter = adapter

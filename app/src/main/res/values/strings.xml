@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TaxiAppKPI</string>
+    <string name="app_name">Spectrum</string>
 
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_driver_maps">DriverMapsActivity</string>
@@ -29,22 +29,26 @@
     <string name="userGenderMale">Чоловік</string>
     <string name="userGenderFemale">Жінка</string>
 
-
     <string name="regCarBrand">Марка авто:</string>
     <string name="regCarBody">Тип кузову:</string>
     <string name="regCarModel">Модель авто:</string>
     <string name="regCarColor">Колір авто:</string>
     <string name="regCarNumber">Номер авто(АА0000АА)</string>
 
-
     <string name="carEngineICE">ДВС</string>
     <string name="carEngineE">Електрокар</string>
+
+    <string name="edtCarBrand">Марка авто:</string>
+    <string name="edtCarBody">Тип кузову:</string>
+    <string name="edtCarModel">Модель авто:</string>
+    <string name="edtCarColor">Колір авто:</string>
+    <string name="edtCarNumber">Номер авто(АА0000АА)</string>
+
     <string name="carBrand">Марка авто: %s</string>
     <string name="carBody">Тип кузову: %s</string>
     <string name="carModel">Модель авто: %s</string>
     <string name="carColor">Колір авто: %s</string>
-    <string name="carNumber">Номер авто(АА0000АА):</string>
-
+    <string name="carNumber">Номер автo</string>
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -55,8 +59,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="changePhoto">Змінити фото</string>
-    <string name="quitBtn">Вийти</string>
-    <string name="editCarInfoButton">Редагувати інформацію про авто</string>
+    <string name="quitBtn">Вийти з акаунту</string>
+    <string name="goToCarInfoButton">Перейти в профіль авто</string>
     <string name="anyway">Все рівно</string>
     <string name="filMaxAge">Максимальний вік (до 75)</string>
     <string name="filMinAge">Мінімальний вік (від 18)</string>
@@ -84,6 +88,7 @@
     <string name="sendComplaint">Скарга на користувача - support@taxikpi.com</string>
     <string name="distanceToFinish">Відстань до кінцевої точки: %.2f км</string>
     <string name="driverLicense">Номер водійського посвідчення</string>
+    <string name="finishRegistration">Закінчити реєстрацію</string>
 
 
 </resources>

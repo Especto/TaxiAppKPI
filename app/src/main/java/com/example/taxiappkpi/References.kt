@@ -1,6 +1,6 @@
 package com.example.taxiappkpi
 
-object Common {
+object References {
     val DRIVERS_LOCATION_REFERENCE = "DriversLocation"
     val DRIVERS_AVAILABLE_REFERENCE = "DriversAvailable"
     val DRIVERS_WORKING_REFERENCE = "DriversWorking"

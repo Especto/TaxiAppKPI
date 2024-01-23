@@ -19,7 +19,7 @@ import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.net.toUri
-import com.example.taxiappkpi.Common
+import com.example.taxiappkpi.References
 import com.example.taxiappkpi.Models.User.CarInfo
 import com.example.taxiappkpi.Models.User.toCarInfo
 import com.example.taxiappkpi.R
@@ -63,6 +63,11 @@ class SettingsCarActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         driverID = mAuth.currentUser!!.uid
 
+        init()
+    }
+
+
+    private fun init() {
         edtEngTypeRG = findViewById(R.id.edtEngType)
         edtEngERB = findViewById(R.id.edtEngE)
         edtEngIceRB = findViewById(R.id.edtEngICE)
@@ -76,20 +81,6 @@ class SettingsCarActivity : AppCompatActivity() {
         doneBtn= findViewById(R.id.edtdoneButtonCar)
 
         imgView = findViewById(R.id.edtCarImg)
-
-        edtCarBrand.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                if(!programSelection){
-                    val selectedBrand = parentView.getItemAtPosition(position) as String
-                    updateCarModels(selectedBrand)
-                }
-                programSelection = false
-
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-            }
-        }
 
         doneBtn.setOnClickListener {
             updateCarInfo()
@@ -106,17 +97,12 @@ class SettingsCarActivity : AppCompatActivity() {
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
         }
 
-        init()
-    }
-
-
-    private fun init() {
-        FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_REFERENCE).child(driverID).child("carInfo").addListenerForSingleValueEvent(object :
+        FirebaseDatabase.getInstance().reference.child(References.DRIVERS_REFERENCE).child(driverID).child("carInfo").addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val carInfoMap = snapshot.value!! as Map<*, *>
-                    val carInfo = carInfoMap.toCarInfo()
+                    carInfo = carInfoMap.toCarInfo()
 
                     when (carInfo.engType) {
                         0 -> { edtEngIceRB.isChecked = true
@@ -130,6 +116,18 @@ class SettingsCarActivity : AppCompatActivity() {
                     initializeBodySpinner(carInfo.bodyType)
                     initializeColorSpinner(carInfo.color)
                     edtCarNumber.text = SpannableStringBuilder(carInfo.number)
+
+                    edtCarBrand.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                            if(!programSelection){
+                                val selectedBrand = parentView.getItemAtPosition(position) as String
+                                updateCarModels(selectedBrand)
+                            }
+                            programSelection = false
+                        }
+                        override fun onNothingSelected(parentView: AdapterView<*>) {
+                        }
+                    }
 
                     if(carInfo.photo!=""){
                         val uriStr = carInfo.photo
@@ -169,17 +167,20 @@ class SettingsCarActivity : AppCompatActivity() {
 
         val carBodyIndex = resources.getStringArray(R.array.car_body).indexOf(carBody)
         val carColorIndex = resources.getStringArray(R.array.car_color).indexOf(carColor)
-
-        carInfo = CarInfo(
+        var photo = carInfo.photo
+        if (imgUri.toString() != ""){
+            photo = imgUri.toString()
+        }
+        val carInfo = CarInfo(
             engType = carEngTypInt,
             brand = carBrand,
             model = carModel,
             bodyType = carBodyIndex,
             color = carColorIndex,
             number= carNumber,
-            photo = imgUri.toString()
+            photo = photo
         )
-        FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_REFERENCE).child(driverID).child("carInfo").updateChildren(carInfo.toMap()).addOnSuccessListener {
+        FirebaseDatabase.getInstance().reference.child(References.DRIVERS_REFERENCE).child(driverID).child("carInfo").updateChildren(carInfo.toMap()).addOnSuccessListener {
             Toast.makeText(this@SettingsCarActivity, "Дані оновились", Toast.LENGTH_SHORT).show()
             finish()
         }

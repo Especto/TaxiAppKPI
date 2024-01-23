@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.taxiappkpi.Common
+import com.example.taxiappkpi.References
 import com.example.taxiappkpi.maps.DriverMapsActivity
 import com.example.taxiappkpi.R
 import com.example.taxiappkpi.maps.RiderMapsActivity
@@ -85,8 +85,8 @@ class SignInActivity : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 if(role=="driver"){
-                    val driverRef = FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_REFERENCE)
-                    driverRef.addValueEventListener(object: ValueEventListener {
+                    val driverRef = FirebaseDatabase.getInstance().reference.child(References.DRIVERS_REFERENCE)
+                    driverRef.addListenerForSingleValueEvent(object: ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if(snapshot.child(mAuth.currentUser!!.uid).exists()) {
                                 startActivity(Intent(this@SignInActivity, DriverMapsActivity::class.java))
@@ -98,8 +98,8 @@ class SignInActivity : AppCompatActivity() {
                     })
 
                 } else{
-                    val riderRef = FirebaseDatabase.getInstance().reference.child(Common.RIDERS_REFERENCE)
-                    riderRef.addValueEventListener(object: ValueEventListener {
+                    val riderRef = FirebaseDatabase.getInstance().reference.child(References.RIDERS_REFERENCE)
+                    riderRef.addListenerForSingleValueEvent(object: ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if(snapshot.child(mAuth.currentUser!!.uid).exists()) {
                                 startActivity(Intent(this@SignInActivity, RiderMapsActivity::class.java))

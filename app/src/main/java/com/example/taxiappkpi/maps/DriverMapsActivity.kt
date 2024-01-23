@@ -26,13 +26,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.taxiappkpi.Common
+import com.example.taxiappkpi.References
 import com.example.taxiappkpi.Models.Filters.RiderFilter
 import com.example.taxiappkpi.Models.Trip.TripRequest
 import com.example.taxiappkpi.Models.User.RiderInfo
 import com.example.taxiappkpi.Models.User.toDriverInfo
 import com.example.taxiappkpi.Models.User.toRiderInfo
-import com.example.taxiappkpi.Models.User.toTripRequest
+import com.example.taxiappkpi.Models.Trip.toTripRequest
+import com.example.taxiappkpi.Models.User.toUserInfo
 import com.example.taxiappkpi.R
 import com.example.taxiappkpi.databinding.ActivityDriverMapsBinding
 import com.example.taxiappkpi.login.WelcomeActivity
@@ -51,9 +52,10 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -77,20 +79,14 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
     private val SETTINGS_ACTIVITY_CODE = 2
     private val FILTERS_ACTIVITY_CODE = 3
 
-    private var distanceOfTrip = 02f
-    private var distanceToRider = 02f
-    private lateinit var lastLocation: Location
-    private lateinit var startPoint: LatLng
-    private lateinit var finishPoint: LatLng
-    private var startMarker: Marker? = null
-    private var finishMarker: Marker? = null
+    private var lastLocation = Location("Start")
 
     private lateinit var manageTripLayout: ConstraintLayout
     private lateinit var setRatingLayout: LinearLayoutCompat
+    private lateinit var buttonsConfirmationLayout: LinearLayout
     private lateinit var statusButton: Button
     private lateinit var distanceToRiderTV: TextView
     private lateinit var distanceToFinishTV: TextView
-
 
     private lateinit var driversWorkingRef: DatabaseReference
     private lateinit var ridersInfoRef: DatabaseReference
@@ -100,21 +96,21 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
     private lateinit var driversInfoRef: DatabaseReference
 
     private lateinit var assignedListener: ValueEventListener
+    private lateinit var tripStatusListener: ValueEventListener
 
     private lateinit var driverID: String
 
     private var riderID: String = ""
     private var riderFound = false
-    private var operationExecuted = false
     private var riderFilter = RiderFilter()
     private lateinit var riderInfo: RiderInfo
     private lateinit var tripRequest: TripRequest
+    private lateinit var runnable: Runnable
 
     private var stopTripConfirmation = 0
     private var tripStatus = -1
 
     private val handler = Handler()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,12 +120,12 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
         mAuth = FirebaseAuth.getInstance()
         driverID = mAuth.currentUser!!.uid
 
-        driversWorkingRef = FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_WORKING_REFERENCE)
-        ridersInfoRef = FirebaseDatabase.getInstance().reference.child(Common.RIDERS_REFERENCE)
-        tripRequestRef = FirebaseDatabase.getInstance().reference.child(Common.TRIPS_REQUEST_REFERENCE)
-        driversAvailableRef = FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_AVAILABLE_REFERENCE)
-        driversLocationRef = FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_LOCATION_REFERENCE)
-        driversInfoRef = FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_REFERENCE)
+        driversWorkingRef = FirebaseDatabase.getInstance().reference.child(References.DRIVERS_WORKING_REFERENCE)
+        ridersInfoRef = FirebaseDatabase.getInstance().reference.child(References.RIDERS_REFERENCE)
+        tripRequestRef = FirebaseDatabase.getInstance().reference.child(References.TRIPS_REQUEST_REFERENCE)
+        driversAvailableRef = FirebaseDatabase.getInstance().reference.child(References.DRIVERS_AVAILABLE_REFERENCE)
+        driversLocationRef = FirebaseDatabase.getInstance().reference.child(References.DRIVERS_LOCATION_REFERENCE)
+        driversInfoRef = FirebaseDatabase.getInstance().reference.child(References.DRIVERS_REFERENCE)
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -141,8 +137,7 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
         val params = locationButton.layoutParams as RelativeLayout.LayoutParams
         params.addRule(RelativeLayout.ALIGN_TOP, 0)
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
-        params.bottomMargin = 50
+        params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE)
 
         findViewById<ImageButton>(R.id.driver_settings_button).setOnClickListener {
             val intent = Intent(this@DriverMapsActivity, SettingsUserActivity::class.java)
@@ -167,14 +162,15 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
                         val key = childSnapshot.key
                         val value = childSnapshot.value
                         if (value == false) {
-                            FirebaseDatabase.getInstance().reference.child(Common.RIDERS_REFERENCE).child(key!!).addListenerForSingleValueEvent(object :
+                            ridersInfoRef.child(key!!).addListenerForSingleValueEvent(object :
                                 ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     if (snapshot.exists()) {
                                         val riderInfoMap = snapshot.value!! as Map<*, *>
                                         riderInfo = riderInfoMap.toRiderInfo()
+                                        Log.d("log_check", "Rating = $riderInfo")
 
-                                        if(riderFilter.userFilter.gender != -1){
+                                        if(riderFilter.userFilter.gender == 0 || riderFilter.userFilter.gender == 1){
                                             if(riderFilter.userFilter.gender != riderInfo.userInfo.gender){
                                                 return
                                             }
@@ -193,14 +189,13 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
                                         Log.d("log_check", "получили предложение заказа")
                                         riderID = key
                                         Log.d("log_check", "вызываем вызов чека позиций")
-                                        getTripPosition()
+                                        getTripData()
 
-                                        handler.postDelayed({
-                                            if (!operationExecuted) {
-                                                Log.d("log_check", "отработал хендлер - $operationExecuted")
-                                                stopTrip()
-                                            }
-                                        }, 10000)
+                                        runnable = Runnable{
+                                            Log.d("log_check", "отработал хендлер - $riderFound")
+                                            stopTrip()
+                                        }
+                                        handler.postDelayed(runnable, 10000)
                                     }
                                 }
                                 override fun onCancelled(error: DatabaseError) {
@@ -219,29 +214,33 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
         driversWorkingRef.child(driverID).addValueEventListener(assignedListener)
     }
 
-    private fun showMarkers() {
+    private fun showRoute() {
+        mMap.clear()
         Log.d("log_check", "отображаем маркеры")
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPoint, 14f))
-        startMarker?.remove()
-        finishMarker?.remove()
-        startMarker = mMap.addMarker(
-            MarkerOptions().position(startPoint)
-                .title("Початкова точка")
-        )!!
-        finishMarker = mMap.addMarker(
-            MarkerOptions().position(finishPoint)
-                .title("Кінцева точка")
-        )!!
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tripRequest.start, 14f))
+        mMap.addMarker(MarkerOptions().position(tripRequest.start).title("Початкова точка")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)))
+
+        mMap.addMarker(MarkerOptions().position(tripRequest.finish).title("Кінцева точка")
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)))
+
+        val polylineOptions = PolylineOptions()
+        polylineOptions.addAll(tripRequest.route)
+        Log.d("log_check", "polyline нарисован, но что за маршрут $tripRequest.route")
+        polylineOptions.width(10f)
+        polylineOptions.color(R.color.orange)
+        mMap.addPolyline(polylineOptions)
     }
 
     @SuppressLint("CutPasteId")
     private fun initTripWidget() {
         Log.d("log_check", "запуск виджета")
+        Log.d("log_check", "${riderInfo.userInfo}")
         val avatarIV: CircleImageView = findViewById(R.id.riderImage)
         if(riderInfo.userInfo.avatar != ""){
             Picasso.get().load(riderInfo.userInfo.avatar).into(avatarIV)
         }
-
+        buttonsConfirmationLayout = findViewById(R.id.buttonsConfirmationLayout)
         manageTripLayout = findViewById(R.id.tripManageLayout)
         statusButton = findViewById(R.id.statusButton)
         setRatingLayout = findViewById(R.id.driverSetRatingLayout)
@@ -260,6 +259,9 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
         val cancelButton: Button = findViewById(R.id.cancelButton)
         val stopTripButton: Button = findViewById(R.id.stopButton)
 
+        manageTripLayout.visibility = View.VISIBLE
+        buttonsConfirmationLayout.visibility = View.VISIBLE
+
         if(riderInfo.userInfo.avatar!=""){
             val uriStr = riderInfo.userInfo.avatar
             Picasso.get().load(uriStr).into(riderImgIV)
@@ -268,11 +270,10 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
         distanceToRiderTV.visibility = View.VISIBLE
         riderRatingTV.text = getString(R.string.userRating, riderInfo.userInfo.rating)
         riderNameTV.text = riderInfo.userInfo.firstName
-        distanceToFinishTV.text = getString(R.string.distanceToFinish, distanceOfTrip)
-        distanceToRiderTV.text = getString(R.string.distanceToRider, distanceToRider)
+        distanceToFinishTV.text = getString(R.string.distanceToFinish, tripRequest.distance)
         riderNumberTV.text = riderInfo.userInfo.phoneNumber
         tripCostTV.text = getString(R.string.tripPrice, tripRequest.price)
-        tripDistanceTV.text = getString(R.string.distanceOfTrip, distanceOfTrip)
+        tripDistanceTV.text = getString(R.string.distanceOfTrip, tripRequest.distance)
 
         manageTripLayout.visibility = View.VISIBLE
 
@@ -282,9 +283,8 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
             if(stopTripConfirmation < 2){
                 Toast.makeText(this@DriverMapsActivity, "Натисніть ще раз щоб відмінити замовлення", Toast.LENGTH_SHORT).show()
             }else{
+
                 Log.d("log_check", "Отменяем заказ")
-
-
                 tripRequestRef.child(riderID).child("status").setValue(3)
                 driversInfoRef.child(driverID).addListenerForSingleValueEvent(object :
                     ValueEventListener{
@@ -300,38 +300,43 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
                             }
                             driverInfo.userInfo.numTrips += 1
                             Log.d("log_check", "ставим плохой отзыв $driverInfo")
-                            FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_REFERENCE).child(driverID).updateChildren(driverInfo.toMap())
+                            driversInfoRef.child(driverID).updateChildren(driverInfo.toMap())
                             }
                     }
 
                     override fun onCancelled(error: DatabaseError) {
                     }
                 })
+                tripRequestRef.child(riderID).child("status").removeEventListener(tripStatusListener)
+
+                stopTripButton.visibility = View.GONE
+                statusButton.visibility = View.GONE
+                buttonsConfirmationLayout.visibility = View.VISIBLE
                 stopTrip()
+
             }
         }
 
         cancelButton.setOnClickListener {
             Log.d("log_check", "нажали отмену заказа")
+            handler.removeCallbacks(runnable)
             Toast.makeText(this@DriverMapsActivity, "Замовлення відхилено", Toast.LENGTH_SHORT).show()
             stopTrip()
-            operationExecuted = true
         }
         acceptButton.setOnClickListener {
             Log.d("log_check", "нажали принятие заказа")
+            handler.removeCallbacks(runnable)
             driversWorkingRef.child(driverID).child(riderID).setValue(true)
 
             Toast.makeText(this@DriverMapsActivity, "Замовлення прийнято", Toast.LENGTH_SHORT).show()
 
-            findViewById<LinearLayout>(R.id.buttonsConfirmationLayout).visibility = View.GONE
+            buttonsConfirmationLayout.visibility = View.GONE
             statusButton.visibility = View.VISIBLE
             stopTripButton.visibility = View.VISIBLE
-
             riderFound = true
-            operationExecuted = true
             statusButton.isEnabled = false
             Log.d("log_check", "слушатель новых заказов отключается")
-            driversWorkingRef.removeEventListener(assignedListener)
+            driversWorkingRef.child(driverID).removeEventListener(assignedListener)
             listenTripStatus()
         }
 
@@ -365,8 +370,8 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
     }
 
     private fun stopTrip() {
-        startMarker?.remove()
-        finishMarker?.remove()
+        mMap.clear()
+
         driversWorkingRef.child(driverID).removeValue()
         driversAvailableRef.child(driverID).setValue(true)
         tripStatus = -1
@@ -375,7 +380,7 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
         manageTripLayout.visibility = View.GONE
     }
 
-    private fun getTripPosition() {
+    private fun getTripData() {
         Log.d("log_check", "это функция позиции, следующий должен быть snapshot")
         tripRequestRef.child(riderID).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -384,33 +389,19 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
                     val tripRequestMap = snapshot.value as Map<*, *>
                     tripRequest = tripRequestMap.toTripRequest()
 
-                    val startCoordinates = tripRequest.start
-                    val finishCoordinates = tripRequest.finish
-
-                    startPoint = LatLng(startCoordinates[0], startCoordinates[1])
-                    finishPoint = LatLng(finishCoordinates[0], finishCoordinates[1])
-
-                    distanceOfTrip = Location("").apply {
-                        latitude = startPoint.latitude
-                        longitude = startPoint.longitude
-                    }.distanceTo(Location("").apply {
-                        latitude = finishPoint.latitude
-                        longitude = finishPoint.longitude
-                    })/1000
-
-                    distanceToRider = Location("").apply {
-                        latitude = startPoint.latitude
-                        longitude = startPoint.longitude
+                    val distanceToRider = Location("").apply {
+                        latitude = tripRequest.start.latitude
+                        longitude = tripRequest.start.longitude
                     }.distanceTo(Location("").apply {
                         latitude = lastLocation.latitude
                         longitude = lastLocation.longitude
                     })/1000
 
                     Log.d("log_check", "получили корды, отображаем корды")
-                    showMarkers()
+                    showRoute()
                     Log.d("log_check", "открываем виджет")
                     initTripWidget()
-
+                    distanceToRiderTV.text = getString(R.string.distanceToRider, distanceToRider)
                 }
             }
 
@@ -422,28 +413,29 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
     private fun listenTripStatus() {
         val titleMessage = "Зміна статусу замовлення"
         Log.d("log_check", "начинаем слушать статус поездки")
-        tripRequestRef.child(riderID).child("status").addValueEventListener(object: ValueEventListener{
+        tripStatusListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     val tripStatus = (snapshot.value as? Long)?.toInt() ?: 0
-                    when(tripStatus){
+                    when (tripStatus) {
                         4 -> {
                             Log.d("log_check", "статус 4, клиент отказался")
                             tripRequestRef.child(riderID).removeEventListener(this)
                             tripRequestRef.child(riderID).removeValue()
                             val notificationMessage = "Клієнт відмінив замовлення"
                             showNotification(notificationMessage, titleMessage)
-                            tripRequestRef.child(riderID).removeValue()
+                            getAssignedRider()
                             stopTrip()
-
                         }
                     }
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
             }
 
-        })
+        }
+        tripRequestRef.child(riderID).child("status").addValueEventListener(tripStatusListener)
     }
 
     private fun showNotification(message: String, title: String) {
@@ -487,7 +479,7 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
         mMap = googleMap
 
         mMap.uiSettings.isZoomControlsEnabled = true
-
+        mMap.isMyLocationEnabled = true
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -502,8 +494,8 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
                 LOCATION_PERMISSION_REQUEST_CODE)
         }
 
+
         buildGoogleApiClient()
-        mMap.isMyLocationEnabled = true
     }
 
     override fun onConnected(p0: Bundle?) {
@@ -541,17 +533,15 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
         val latLng = LatLng(p0.latitude, p0.longitude)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
 
-        val userID = FirebaseAuth.getInstance().currentUser!!.uid
-        val driversLocationRef = FirebaseDatabase.getInstance().reference.child(Common.DRIVERS_LOCATION_REFERENCE)
-        GeoFire(driversLocationRef).setLocation(userID, GeoLocation(p0.latitude, p0.longitude))
+        GeoFire(driversLocationRef).setLocation(driverID, GeoLocation(p0.latitude, p0.longitude))
 
         if(riderFound){
             Log.d("log_check", "Смена позиции, чекаем дистанцию до точки")
 
             if(tripStatus==-1){
                 val distanceToStartPoint = lastLocation.distanceTo(Location("").apply {
-                    latitude = startPoint.latitude
-                    longitude = startPoint.longitude
+                    latitude = tripRequest.start.latitude
+                    longitude = tripRequest.start.longitude
                 })
 
                 distanceToRiderTV.text = getString(R.string.distanceToRider, distanceToStartPoint/1000)
@@ -565,8 +555,8 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
             if(tripStatus==2){
 
                 val distanceToFinishPoint = lastLocation.distanceTo(Location("").apply {
-                    latitude = finishPoint.latitude
-                    longitude = finishPoint.longitude
+                    latitude = tripRequest.finish.latitude
+                    longitude = tripRequest.finish.longitude
                 })
                 distanceToFinishTV.text = getString(R.string.distanceToFinish, distanceToFinishPoint/1000)
 
@@ -621,18 +611,21 @@ class DriverMapsActivity : AppCompatActivity(), OnMapReadyCallback,
         finish()
     }
 
-    fun onStarClicked(view: View) {
+    fun onStarClickedDriver(view: View) {
         val starIdStr = view.tag as String
         val starId = starIdStr.toInt()
 
         if (riderInfo.userInfo.numTrips != 0) {
-            riderInfo.userInfo.rating = ((riderInfo.userInfo.rating * riderInfo.userInfo.numTrips) + starId) / (riderInfo.userInfo.numTrips + 1)
+            riderInfo.userInfo.rating = (((riderInfo.userInfo.rating * riderInfo.userInfo.numTrips) + starId) / (riderInfo.userInfo.numTrips + 1))
         } else {
             riderInfo.userInfo.rating = starId.toDouble()
         }
         riderInfo.userInfo.numTrips += 1
 
-        ridersInfoRef.child(riderID).updateChildren(riderInfo.toMap())
+
+        ridersInfoRef.child(riderID).child("userInfo").updateChildren(riderInfo.userInfo.toMap())
+
+        tripRequestRef.child(riderID).child("status").removeEventListener(tripStatusListener)
 
         getAssignedRider()
         setRatingLayout.visibility = View.GONE

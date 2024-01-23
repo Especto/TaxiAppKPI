@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
+    tools:context=".login.MainActivity"
     android:background="@drawable/splash_screen">
 
 
